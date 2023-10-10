@@ -6,6 +6,7 @@ import sequelize from './src/database/config.js'
 
 import userRoutes from './src/routes/userRoutes.js'
 import publishRoutes from './src/routes/publishRoutes.js'
+import authRoutes from './src/routes/authRoutes.js';
 
 import cors from 'cors'
 
@@ -28,6 +29,7 @@ app.use(cors());
 //config de rutas
 app.use('/api', userRoutes);
 app.use('/api', publishRoutes);
+app.use('/api', authRoutes)
 //http://localhost:3000/api/...
 
 // iniciar el servidor

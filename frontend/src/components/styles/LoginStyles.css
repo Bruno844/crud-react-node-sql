@@ -1,0 +1,14 @@
+.form{
+    background-color: #c2c1c1;
+    border-radius: 2%;
+}
+.form-group{
+    width: 30%;
+    margin-left: 400px;
+}
+.botoncito{
+    margin-left: 400px;
+}
+.label{
+    font-family:'Times New Roman', Times, serif
+}

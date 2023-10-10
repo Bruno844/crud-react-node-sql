@@ -3,6 +3,8 @@ import ShowUsers from './components/user/ShowUsers'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import CreateUser from './components/user/CreateUser'
 import EditUser from './components/user/EditUser'
+import ShowSignUp from './components/auth/ShowSignUp';
+import ShowLogin from './components/auth/ShowLogin'
 
 
 function App() {
@@ -25,7 +27,9 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route path='' element={<ShowUsers />} />
+          <Route path='/registro' element={<ShowSignUp />} />
+          <Route path='/iniciosesion' element={<ShowLogin />} />
+          <Route path='/inicio' element={<ShowUsers />} />
           <Route path='/create' element={<CreateUser />} />
           <Route path='/edit/:id' element={<EditUser />} />
         </Routes>
