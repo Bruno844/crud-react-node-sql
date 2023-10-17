@@ -3,7 +3,7 @@ import '../styles/LoginStyles.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const ShowSignUp = () => {
+const ShowLogin = () => {
 
     const URL = 'http://localhost:3000/api/login'
 
@@ -13,15 +13,27 @@ const ShowSignUp = () => {
     const navigate = useNavigate();
 
 
+
+    //HECHO
     const loginUser = async (e) => {
 
-        e.preventDefault();
-        await axios.get(URL, {email: email, password: password})
-        //console.log({email: email, password: password});
-        navigate('/inicio')
+        try {
 
+           e.preventDefault();
+            const data = await axios.post(URL, { email,password});
+            console.log(data.data);
+            if(!data.data.userFound){
+                console.log('acceso restringido')
+            }
+            else{
+                navigate('/inicio')
+            }
+           
+           
+        } catch (error) {
+            console.log(error)
+        }
     }
-
 
 
 
@@ -60,4 +72,4 @@ const ShowSignUp = () => {
     )
 }
 
-export default ShowSignUp
+export default ShowLogin

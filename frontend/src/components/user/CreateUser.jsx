@@ -18,7 +18,7 @@ const CreateUser = () => {
     const saveUser = async (e) => {
         e.preventDefault()
         await axios.post(URL, {username: username,password: password, email:  email})
-        navigate('/')//una vez guardado los datos, te regresa a la pagina principal
+        navigate('/inicio')//una vez guardado los datos, te regresa a la pagina principal
     }
  
   return (

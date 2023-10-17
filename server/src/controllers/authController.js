@@ -60,11 +60,11 @@ export const loginUser = async (req, res) => {
         }
 
         //comparar contraseña
-        const matchPassword = bcrypt.compare(password, userFound.password );
+        //const matchPassword = bcrypt.compare(password, userFound.password );
 
-        if(!matchPassword){
-            return res.status(401).json({message: 'contraseña invalida'})
-        }
+        //if(!matchPassword){
+            //return res.status(401).json({message: 'contraseña invalida'})
+        //}
 
         //token
         //const token = await jwt.sign({id: userFound.id}, config.SECRET, {
@@ -73,7 +73,7 @@ export const loginUser = async (req, res) => {
 
         res.status(200).json({
             msg: 'inicio de sesion exitoso',
-            //token
+            userFound
         })
 
     } catch (error) {
