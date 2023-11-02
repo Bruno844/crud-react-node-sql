@@ -1,0 +1,15 @@
+.card {
+    width: 20rem;
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    padding: 30px;
+    
+}
+.col{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+
+}

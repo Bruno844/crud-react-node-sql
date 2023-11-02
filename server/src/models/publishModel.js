@@ -3,7 +3,6 @@ import { Model, DataTypes } from 'sequelize';
 import sequelize from '../database/config.js';
 import User from './userModel.js';
 
-
 const Publish = sequelize.define('Publish', {
     id: {
         type: DataTypes.INTEGER,
@@ -38,7 +37,7 @@ const Publish = sequelize.define('Publish', {
     },
     userId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
     }
 })
 

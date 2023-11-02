@@ -2,19 +2,22 @@ import Register from "../models/registerModel.js";
 import jwt from 'jsonwebtoken';
 import config from '../config.js';
 import bcrypt from 'bcryptjs';
+import User from "../models/userModel.js";
 
 
 
 export const registerUser = async (req, res) => {
 
-    const { email, password } = req.body
+    const { username,email, password } = req.body
 
     try {
-        
-        const user_register = await Register.create({email, password});
 
         const salt = 10;
         const hashPassword = await bcrypt.hash(password, salt);
+
+        //const user_register = await Register.create({email, password});
+        const user_register = await User.create({username,email,password: hashPassword})
+
     
         if(!hashPassword){
             res.status(400).json({msg: 'error al encriptar contraseña'})
@@ -50,7 +53,7 @@ export const loginUser = async (req, res) => {
         
 
         //buscando un usuario en la base de datos
-        const userFound = await Register.findOne({
+        const userFound = await User.findOne({
             where: {password: password, email: email},
 
 

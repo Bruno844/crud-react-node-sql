@@ -46,7 +46,7 @@ const ShowUsers = () => {
                         <thead className="table-primary">
                             <tr>
                                 <th>Nombre</th>
-                                <th>Contraseña</th>
+                                <th>Publicaciones</th>
                                 <th>Email</th>
                                 <th>Acciones</th>
                             </tr>
@@ -55,7 +55,10 @@ const ShowUsers = () => {
                             {users.map ((user) => ( //recorro el arreglo que traigo de ese estado
                                 <tr key={user.id} >
                                     <td>{user.username}</td>
-                                    <td>{user.password}</td>
+                                    <td>
+
+                                        <Link to={`/publishes/${user.id}`} className='btn btn-info'>Ver Publicaciones</Link>
+                                    </td>
                                     <td>{user.email}</td>
                                     <td>
                                         <Link to={`/edit/${user.id}`} className='btn btn-info'>Editar</Link>
@@ -67,6 +70,7 @@ const ShowUsers = () => {
                     </table>
                 </div>
             </div>
+            <Link to={`/publishes`} className='btn btn-info'>Ver todas las Publicaciones</Link>
         </div>
 
     </div>

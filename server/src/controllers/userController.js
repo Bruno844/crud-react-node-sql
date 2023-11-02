@@ -1,3 +1,4 @@
+
 import User from '../models/userModel.js'
 
 export const getAllUsers = async (req, res) => {
@@ -17,13 +18,41 @@ export const getAllUsers = async (req, res) => {
     }
 }
 
+
+export const getUserById = async (req, res) => {
+
+    const { id } = req.params
+
+    try {
+
+        const user_id = await User.findOne({
+            where: {id : id}
+        })
+
+        res.status(200).json({
+            user_id
+        })
+
+        if (!user_id) {
+            res.status(400).json({
+                msg: 'no existe id '
+            })
+        }
+
+    } catch (error) {
+        res.status(400).json({ msg: 'no existe usuario' })
+    }
+
+
+}
+
 export const createUser = async (req, res) => {
 
     const { username, password, email } = req.body
 
     try {
-        
-        const user = await User.create({username,password, email});
+
+        const user = await User.create({ username, password, email });
         res.status(201).json({
             ok: true,
             user
@@ -39,15 +68,15 @@ export const createUser = async (req, res) => {
 }
 
 export const updateUser = async (req, res) => {
-   
-    const {id} = req.params
-    const {username, password, email} = req.body
+
+    const { id } = req.params
+    const { username, password, email } = req.body
 
     try {
 
-       const userupdate = await User.update(req.body, {
-            where: {id: id}
-       })
+        const userupdate = await User.update(req.body, {
+            where: { id: id }
+        })
 
         res.status(200).json({
             msg: "usuario actualizado",
@@ -55,7 +84,7 @@ export const updateUser = async (req, res) => {
         })
 
 
-    
+
     } catch (error) {
         console.log(error);
         res.status(500).json({
@@ -67,12 +96,12 @@ export const updateUser = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
 
-    const {id} = req.params;
+    const { id } = req.params;
 
 
     try {
 
-        const user = await User.destroy({where: {id: id}})
+        const user = await User.destroy({ where: { id: id } })
 
         res.status(201).json({
             ok: true,

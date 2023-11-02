@@ -4,9 +4,9 @@ import User from '../models/userModel.js';
 export const getAllPublish = async (req, res) => {
 
     try {
-        const posts = await Publish.findAll();
+        const publishes = await Publish.findAll();
         res.status(200).json({
-            posts,
+            publishes,
             ok: true
         })
     }
@@ -20,20 +20,28 @@ export const getAllPublish = async (req, res) => {
 
 export const getPublishByUser = async (req,res) => {
     
-    const {id} = req.params
+    const {userId} = req.params
     
     try {
-        const publish = await Publish.findOne({
-            where: {id},
+        const publish = await Publish.findAll({
+            where: {userId},
             include: {
                 model: User,
-                attributes: ["username", "password"]
+                attributes: ["username"]
             }
         })
-        res.status(200).json({
-            publish
-        })
-        
+
+        if(!userId) {
+            res.status(500).json({
+                message: 'no se encuentra usuario con ese id'
+            })
+        } else {
+            res.status(200).json({
+                publish
+            })
+            
+        }
+
     } catch (error) {
         res.status(500).json({error: error.message})
     }
@@ -44,7 +52,7 @@ export const getPublishByUser = async (req,res) => {
 
 export const createPublish = async (req, res) => {
     try {
-        const { descripcion, fecha, hora, imagen, ubicacion } = req.body
+        const { descripcion, fecha, hora, imagen, ubicacion, userId } = req.body
         const post = await Publish.create(req.body);
         res.status(201).json({
             ok: true,

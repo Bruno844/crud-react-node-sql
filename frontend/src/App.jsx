@@ -5,6 +5,8 @@ import CreateUser from './components/user/CreateUser'
 import EditUser from './components/user/EditUser'
 import ShowSignUp from './components/auth/ShowSignUp';
 import ShowLogin from './components/auth/ShowLogin'
+import ShowPublishes from './components/publish/ShowPublishes';
+import ShowPublishByUser from './components/publish/ShowPublishByUser';
 
 
 function App() {
@@ -30,6 +32,8 @@ function App() {
           <Route path='/registro' element={<ShowSignUp />} />
           <Route path='/iniciosesion' element={<ShowLogin />} />
           <Route path='/inicio' element={<ShowUsers />} />
+          <Route path='/publishes' element={<ShowPublishes />} />
+          <Route path='/publishes/:id' element={<ShowPublishByUser />} />
           <Route path='/create' element={<CreateUser />} />
           <Route path='/edit/:id' element={<EditUser />} />
         </Routes>

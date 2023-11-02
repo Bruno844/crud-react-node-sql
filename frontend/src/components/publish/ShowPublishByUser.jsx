@@ -1,34 +1,42 @@
 import axios from 'axios';
 import '../styles/PublishStyle.css';
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+
+
+const URL = 'http://localhost:3000/api/publishes/'
 
 
 
-const URL = 'http://localhost:3000/api/publishes';
 
-
-
-
-const ShowPublishes = () => {
+const ShowPublishByUser = () => {
 
 
   const [publishes, setPublishes] = useState([])
 
+ const {id} = useParams()
+
   useEffect(() => {
 
-    getPublishes(); //al renderizar la aplicacion, muestre los datos traidos de esa funcion
+    getPublishByuser(); //al renderizar la aplicacion, muestre los datos traidos de esa funcion
 
   }, [])
 
-  //metodo para mostrar todas las publicaciones
-  const getPublishes = async () => {
-    const res = await axios.get(URL); //peticion asincrona hacia el backend
-    setPublishes(res.data.publishes) //seteo los datos hacia un nuevo estado
+    //metodo para mostrar todas las publicaciones
+    const getPublishByuser = async () => {
 
-    console.log(res.data.publishes)
+        //ANALIZAR ESTE COMPONENTE
+        //FUNCIONA, NO LO TOQUES MAS!!
+        //const id_publish = await axios.get(URL_PUBLISH + id);
+        const res = await axios.get(URL+id);
+        setPublishes(res.data.publish) //seteo los datos hacia un nuevo estado
+
+        console.log(res.data)
 
 
-  }
+      
+
+    }
 
 
 
@@ -53,7 +61,6 @@ const ShowPublishes = () => {
 
       </div>
 
-
     </>
 
 
@@ -61,4 +68,4 @@ const ShowPublishes = () => {
   )
 }
 
-export default ShowPublishes
+export default ShowPublishByUser

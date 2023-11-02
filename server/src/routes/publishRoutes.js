@@ -4,7 +4,7 @@ import { getAllPublish, createPublish, deletePublish, updatePublish, getPublishB
 
 router.get('/publishes', getAllPublish)
 
-router.get('/publishes/:id/user', getPublishByUser)
+router.get('/publishes/:userId', getPublishByUser)
 
 router.post('/publish', createPublish)
 
