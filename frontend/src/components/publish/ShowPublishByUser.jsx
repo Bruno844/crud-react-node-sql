@@ -2,6 +2,7 @@ import axios from 'axios';
 import '../styles/PublishStyle.css';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const URL = 'http://localhost:3000/api/publishes/'
@@ -48,17 +49,19 @@ const ShowPublishByUser = () => {
             {publishes.map((publish) => (
 
               <div className="card" key={publish.id}>
-                <img src="..." className="card-img-top" alt="..."></img>
+             
                 <div className="card-body">
                   <h5 className="card-title">{publish.description}</h5>
                   <p className="card-text">{publish.location}</p>
+                  <p className='card-text'>{publish.date}</p>
                 </div>
+                <Link to={`/edit-publish/${publish.id}`} className='btn btn-info'>Editar Publicacion</Link>
               </div>
             ))}
           </div>
 
         </div>
-
+        <Link to="/create-publish" className="btn btn-primary mt-2 mb-2">Crear nueva publicacion</Link>
       </div>
 
     </>

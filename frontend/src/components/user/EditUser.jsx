@@ -18,11 +18,11 @@ const EditUser = () => {
     const updateUser = async (e) => {
         e.preventDefault();
         await axios.put(URL+id, {
-            username,
-            password,
-            email
+            username: username,
+            password: password,
+            email: email,
         })
-        navigate('/')
+        navigate('/inicio')
     }
 
     
@@ -34,10 +34,10 @@ const EditUser = () => {
 
     const getUserById = async () => {
         const res = await axios.get(URL+id);
-        setUsername(res.data.users)
-        setPassword(res.data.users)
-        setEmail(res.data.users)
-        console.log(res)
+        setUsername(res.data.user_id.username)
+        setPassword(res.data.user_id.password)
+        setEmail(res.data.user_id.email)
+        console.log(res.data.user_id)
     }
 
 

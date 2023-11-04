@@ -40,10 +40,11 @@ const ShowPublishes = () => {
             {publishes.map((publish) => (
 
               <div className="card" key={publish.id}>
-                <img src="..." className="card-img-top" alt="..."></img>
+               
                 <div className="card-body">
                   <h5 className="card-title">{publish.description}</h5>
                   <p className="card-text">{publish.location}</p>
+                  <p className='card-text'>{publish.date}</p>
                 </div>
               </div>
             ))}

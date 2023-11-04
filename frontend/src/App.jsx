@@ -1,12 +1,19 @@
 
 import ShowUsers from './components/user/ShowUsers'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+
+//componentes
 import CreateUser from './components/user/CreateUser'
 import EditUser from './components/user/EditUser'
 import ShowSignUp from './components/auth/ShowSignUp';
 import ShowLogin from './components/auth/ShowLogin'
 import ShowPublishes from './components/publish/ShowPublishes';
 import ShowPublishByUser from './components/publish/ShowPublishByUser';
+import EditProfileUser from './components/user/EditProfileUser';
+import CreatePublish from './components/publish/CreatePublish';
+import EditPublish from './components/publish/EditPublish';
 
 
 function App() {
@@ -23,7 +30,9 @@ function App() {
           <div className="navbar-nav">
             <a className="nav-item nav-link text-white" href="#">Usuarios<span className="sr-only">(current)</span></a>
             <a className="nav-item nav-link text-white" href="#">Publicaciones</a>
+       
           </div>
+         
         </div>
       </nav>
 
@@ -31,11 +40,20 @@ function App() {
         <Routes>
           <Route path='/registro' element={<ShowSignUp />} />
           <Route path='/iniciosesion' element={<ShowLogin />} />
+
           <Route path='/inicio' element={<ShowUsers />} />
+
           <Route path='/publishes' element={<ShowPublishes />} />
           <Route path='/publishes/:id' element={<ShowPublishByUser />} />
+          <Route path='/create-publish' element={<CreatePublish />} />
+          <Route path='/edit-publish/:id' element={<EditPublish />} />
+
+
+
           <Route path='/create' element={<CreateUser />} />
           <Route path='/edit/:id' element={<EditUser />} />
+          <Route path='/profiledit' element={<EditProfileUser />} />
+
         </Routes>
       </BrowserRouter>
 

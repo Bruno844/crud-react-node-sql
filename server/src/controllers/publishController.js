@@ -18,6 +18,35 @@ export const getAllPublish = async (req, res) => {
     }
 }
 
+export const getPublishById = async (req,res) => {
+
+    const {id} = req.params
+
+    try {
+    
+        const publish_id = await Publish.findOne({
+            where: {id: id}
+        })
+
+        if(!publish_id) {
+            res.status(500).json({
+                msg: 'error al obtener publicacion con ese id'
+            })
+        }
+
+        res.status(200).json({
+            publish_id
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            msg: error
+        })
+    }
+
+}
+
+
 export const getPublishByUser = async (req,res) => {
     
     const {userId} = req.params
@@ -70,26 +99,25 @@ export const createPublish = async (req, res) => {
 export const updatePublish = async (req, res) => {
    
     const {id} = req.params
-    const {descripcion, fecha, hora, imagen, ubicacion } = req.body
+    const {descripcion, fecha, hora, imagen, ubicacion,userId } = req.body
 
     try {
 
-        const post = await Publish.findOne({id});
-
-        if(post){
-            post.update({descripcion, fecha, hora, imagen, ubicacion })
-        }
-        else{
-            res.status(404).json({
-                msg: "no existe publicacion con ese id"
-            })
-        }
-
-        res.status(200).json({
-            msg: "se actualizo la publicacion",
-            post
+        const edit_publish = await Publish.update(req.body, {
+            where: {id: id  }
         })
 
+        if(!id) {
+            res.status(400).json({
+                msg: 'no existe la publicacion con ese id'
+            })
+        }
+        else{
+            res.status(200).json({
+                msg: 'publicacion actualizada',
+                edit_publish
+            })
+        }
 
     
     } catch (error) {

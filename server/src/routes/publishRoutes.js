@@ -1,8 +1,10 @@
 import { Router } from 'express';
 const router = Router();
-import { getAllPublish, createPublish, deletePublish, updatePublish, getPublishByUser } from '../controllers/publishController.js';
+import { getAllPublish, createPublish, deletePublish, updatePublish, getPublishByUser, getPublishById } from '../controllers/publishController.js';
 
 router.get('/publishes', getAllPublish)
+
+router.get('/publish/:id', getPublishById)
 
 router.get('/publishes/:userId', getPublishByUser)
 
