@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 
 const URL = 'http://localhost:3000/api/publishes/'
+const URL_DELETE = 'http://localhost:3000/api/publish/'
 
 
 
@@ -39,6 +40,13 @@ const ShowPublishByUser = () => {
 
     }
 
+    const deletePublish = async (id) => {
+      
+      const res = await axios.delete(URL_DELETE+id);
+      getPublishByuser()
+
+    }
+
 
 
   return (
@@ -56,6 +64,7 @@ const ShowPublishByUser = () => {
                   <p className='card-text'>{publish.date}</p>
                 </div>
                 <Link to={`/edit-publish/${publish.id}`} className='btn btn-info'>Editar Publicacion</Link>
+                <button onClick={() => deletePublish(publish.id)} className='btn btn-danger mt-3'>Eliminar</button>
               </div>
             ))}
           </div>

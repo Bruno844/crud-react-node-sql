@@ -44,8 +44,8 @@ const EditUser = () => {
 
     return (
         <div className='container'>
-            <h3>Editar User</h3>
-            <form onSubmit={updateUser}>
+            <h3 className='mt-4'>Editar Usuario</h3>
+            <form onSubmit={updateUser} className='mt-4'>
                 <div className='mb-3'>
                     <label className="form-label">Nombre</label>
                     <input

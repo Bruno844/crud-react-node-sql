@@ -9,6 +9,7 @@ const ShowSignUp = () => {
     const URL = 'http://localhost:3000/api/register'
 
     //manejo de estados para los campos del formulario
+    const [username, setUserName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate();
@@ -17,7 +18,7 @@ const ShowSignUp = () => {
     const createRegister = async (e) => {
 
         e.preventDefault();
-        await axios.post(URL, {email: email, password: password})
+        await axios.post(URL, { username: username, email: email, password: password })
         //console.log({email: email, password: password});
         navigate('/inicio')
 
@@ -32,25 +33,36 @@ const ShowSignUp = () => {
             <form className="form py-4" onSubmit={createRegister}>
 
                 <div className="form-group mb-4">
-                    <label  className='label'>Correo Electronico</label>
-                    <input 
-                        type="email" 
-                        className="form-control" 
+                    <label className='label'>Nombre de Usuario</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Ingrese su nombre"
+                        value={username}
+                        onChange={(e) => setUserName(e.target.value)}
+                    />
+                </div>
+
+                <div className="form-group mb-4">
+                    <label className='label'>Correo Electronico</label>
+                    <input
+                        type="email"
+                        className="form-control"
                         placeholder="Ingrese su mail"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value) }
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
 
 
                 <div className="form-group mb-3">
-                    <label  className='label'>Contraseña</label>
-                    <input 
-                        type="password" 
-                        className="form-control" 
-                        placeholder="Ingrese su contraseña" 
+                    <label className='label'>Contraseña</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        placeholder="Ingrese su contraseña"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value) }
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
                 <button type="submit" className="btn btn-primary botoncito">Registrarse</button>

@@ -2,6 +2,8 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+
+
 const URL = 'http://localhost:3000/api/users'
 const URL_DELETE = 'http://localhost:3000/api/user/'
 
@@ -10,6 +12,8 @@ const URL_DELETE = 'http://localhost:3000/api/user/'
 const ShowUsers = () => {
 
     const [users, setUser] = useState([]);
+    const [userLogin, setUserLogin] = useState(null);
+
 
 
     useEffect(() => {
@@ -28,7 +32,6 @@ const ShowUsers = () => {
     }
 
 
-
     //metodo para eliminar un usuario por su id
     const deleteUser = async(id) => {
         await axios.delete(`${URL_DELETE}${id}`) //elimino un usuario por su id
@@ -40,11 +43,11 @@ const ShowUsers = () => {
     <div>
         <div className="container">
            
-            <div className="row">
+            <div className="row mt-5">
                 <div className="col">
-                    <Link to="/create" className="btn btn-primary mt-2 mb-2">Crear nuevo Usuario</Link>
+                    <Link to="/crear-usuario" className="btn btn-primary mt-2 mb-2">Crear nuevo Usuario</Link>
                     <Link to="/profiledit" className="btn btn-primary mt-2 mb-2">Editar Perfil</Link>
-                    <table className="table">
+                    <table className="table mt-3">
                         <thead className="table-primary">
                             <tr>
                                 <th>Nombre</th>

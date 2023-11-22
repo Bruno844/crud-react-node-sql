@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
-import config from '../config.js';
-import Register from '../models/registerModel.js';
+import config from '../../config.js';
+import User from '../models/userModel.js';
 
 export const verifyToken = async(req,res,next) => {
 
@@ -18,11 +18,11 @@ export const verifyToken = async(req,res,next) => {
             })
         }
 
-        const tokendecode = jwt.verify(token, config.SECRET)
-        req.id = tokendecode.id; //compara que los id que vengan de la solicitud, como el que tiene el token relacionado, sean iguales
+        const decoded = jwt.verify(token, config.SECRET)
+        req.id = decoded.id; //compara que los id que vengan de la solicitud, como el que tiene el token relacionado, sean iguales
         
-        const user = await Register.findOne({
-            where: {email:email, password: password}
+        const user = await User.findOne({
+            where: {email:email}
         })
         if(!user){
             return res.status(404).json({

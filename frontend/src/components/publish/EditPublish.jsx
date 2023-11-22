@@ -50,7 +50,7 @@ const EditPublish = () => {
 
     return (
         <div className='container mt-4'>
-            <h3>Crear Publicacion</h3>
+            <h3>Editar Publicacion</h3>
             <form onSubmit={updatePublish}>
                 <div className='mb-3'>
                     <label className="form-label">Descripcion de la publicacion</label>
@@ -86,6 +86,7 @@ const EditPublish = () => {
                         onChange={(e) => setUserId(e.target.value)}
                         type='number'
                         className='form-control'
+                        disabled
                     />
                 </div>
                 <button type='submit' className='btn btn-primary'>Guardar</button>
